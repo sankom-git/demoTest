@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "b5736083-4ede-4987-bc38-66ba2a1127f5",
+		"name": "TestRegister",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tokens",
+			"item": [
+				{
+					"name": "GetToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/gettokens/:userName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gettokens",
+								":userName"
+							],
+							"variable": [
+								{
+									"key": "userName",
+									"value": "User1234"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "Register_success_case  > 50000",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "custom-token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXJOYW1lIjoiVXNlcjEyMzQifQ.W5MOXdEzltP7pZ_BWYt4w-7dmUxoBL4ss6t_grTQzFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"userName\":\"1234\",\n\"address\":\"2232323\",\n\"province\":\"zzzz\",\n\"zipcode\":\"12345\",\n\"refercode\":\"\",\n\"classify\":\"\",\n\"phoneno\":\"123456789\",\n\"salary\":50001\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/:userName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								":userName"
+							],
+							"variable": [
+								{
+									"key": "userName",
+									"value": "User1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register_success_case  30000 to 50000",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "custom-token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXJOYW1lIjoiVXNlcjEyMzQifQ.W5MOXdEzltP7pZ_BWYt4w-7dmUxoBL4ss6t_grTQzFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"userName\":\"1234\",\n\"address\":\"2232323\",\n\"province\":\"zzzz\",\n\"zipcode\":\"12345\",\n\"refercode\":\"\",\n\"classify\":\"\",\n\"phoneno\":\"123456789\",\n\"salary\":30000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/:userName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								":userName"
+							],
+							"variable": [
+								{
+									"key": "userName",
+									"value": "User1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register_success_case  15000 to 30000",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "custom-token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXJOYW1lIjoiVXNlcjEyMzQifQ.W5MOXdEzltP7pZ_BWYt4w-7dmUxoBL4ss6t_grTQzFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"userName\":\"1234\",\n\"address\":\"2232323\",\n\"province\":\"zzzz\",\n\"zipcode\":\"12345\",\n\"refercode\":\"\",\n\"classify\":\"\",\n\"phoneno\":\"123456789\",\n\"salary\":15000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/:userName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								":userName"
+							],
+							"variable": [
+								{
+									"key": "userName",
+									"value": "User1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register_success_case  <15000",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "custom-token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXJOYW1lIjoiVXNlcjEyMzQifQ.W5MOXdEzltP7pZ_BWYt4w-7dmUxoBL4ss6t_grTQzFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"userName\":\"1234\",\n\"address\":\"2232323\",\n\"province\":\"zzzz\",\n\"zipcode\":\"12345\",\n\"refercode\":\"\",\n\"classify\":\"\",\n\"phoneno\":\"123456789\",\n\"salary\":12345.67\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/:userName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								":userName"
+							],
+							"variable": [
+								{
+									"key": "userName",
+									"value": "User1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registe_token_fail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "custom-token",
+								"type": "text",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXJOYW1lIjoiVXNlcjEyMzQifQ.W5MOXdEzltP7pZ_BWYt4w-7dmUxoBL4ss6t_grTQzFA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"userName\":\"1234\",\n\"address\":\"2232323\",\n\"province\":\"zzzz\",\n\"zipcode\":\"12345\",\n\"refercode\":\"\",\n\"classify\":\"\",\n\"phoneno\":\"\",\n\"salary\":12345.67\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/:userName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								":userName"
+							],
+							"variable": [
+								{
+									"key": "userName",
+									"value": "User12345"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GetUserInformation",
+			"item": [
+				{
+					"name": "GetUserInformation_token_success",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "custom-token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXJOYW1lIjoiVXNlcjEyMzQifQ.W5MOXdEzltP7pZ_BWYt4w-7dmUxoBL4ss6t_grTQzFA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/user/:userName/:userRequest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								":userName",
+								":userRequest"
+							],
+							"variable": [
+								{
+									"key": "userName",
+									"value": "User1234"
+								},
+								{
+									"key": "userRequest",
+									"value": "SSSYYYY"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserInformation_token_fail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "custom-token",
+								"type": "text",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsInVzZXJOYW1lIjoiVXNlcjEyMzQifQ.W5MOXdEzltP7pZ_BWYt4w-7dmUxoBL4ss6t_grTQzFA"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/user/:userName/:userRequest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								":userName",
+								":userRequest"
+							],
+							"variable": [
+								{
+									"key": "userName",
+									"value": "User12345"
+								},
+								{
+									"key": "userRequest",
+									"value": "SSSYYYY"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

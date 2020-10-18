@@ -9,5 +9,7 @@ Howtorun
    2. cd demo
    3. mvnw spirngb-boot:run
    
-REST path
-          
+REST test path on localhost
+      get token   POST http://localhost:8080/gettokens/:userName
+      create user POST http://localhost:8080/user/:userName
+      Get User    GET  http://localhost:8080/user/:userName/:userRequest

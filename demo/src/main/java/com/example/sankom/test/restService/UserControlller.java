@@ -63,7 +63,7 @@ public class UserControlller {
 			System.out.println("Token="+token );
 			System.out.println("UserName="+userName );
 			System.out.println("userRequest="+userRequest );
-			
+			UserModel userData=null;
 			try {
 			    Algorithm algorithm = Algorithm.HMAC256("secret");
 			    JWTVerifier verifier = JWT.require(algorithm)
@@ -78,21 +78,22 @@ public class UserControlller {
 				           HttpStatus.FORBIDDEN, "Request Cannot Access ");
 			   }else{
 				   //Get User
-				   userService.getUser(userRequest);
+				   userData= userService.getUser(userRequest);
 			   }
 			   
 			} catch (JWTVerificationException exception){
 			    //Invalid signature/claims
 			}
 			 ResponseModel res=new ResponseModel();
-			 res.setUsermodel(new UserModel());
-			 res.getUsermodel().setUserName(userName);
+			 res.setUsermodel(userData);
 				return new ResponseEntity<>(res, HttpStatus.OK);
 		       
 		    } catch ( Exception ex) {
 		    	ex.printStackTrace();
-		        throw new Exception(
-		          "Exception", ex);
+		      //  throw new Exception(
+		       //   "Exception", ex);
+		    	 ResponseModel res=new ResponseModel();
+		    	return new ResponseEntity<>(res, HttpStatus.EXPECTATION_FAILED);
 		    }
 		
 	}
@@ -121,10 +122,18 @@ public class UserControlller {
 			    //Invalid signature/claims
 			}
 			
-			   userService.createUser(user);
-			   ResponseModel res=new ResponseModel();
+			   try {
+				userService.createUser(user);
+				ResponseModel res=new ResponseModel();
 				 res.setUsermodel(user);
 				return new ResponseEntity<>(res, HttpStatus.OK);
+			} catch (Exception e) {
+				ResponseModel res=new ResponseModel();
+				e.printStackTrace();
+				return new ResponseEntity<>(res, HttpStatus.EXPECTATION_FAILED);
+			}
+			   
+			   
 		       
 		    } catch ( Exception ex) {
 		    	ex.printStackTrace();

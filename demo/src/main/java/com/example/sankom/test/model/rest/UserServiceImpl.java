@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
 			
 			user.setClassify(userDb.getClassify());
 			user.setRefercode(userDb.getRefercode());
+			user.setSalary(user.getSalary());
 			userdao.createUser(userDb);
 		}
 		
@@ -81,6 +82,11 @@ public class UserServiceImpl implements UserService {
 			res.setAddress(userDB.getAddress());
 			res.setProvince(userDB.getProvince());
 			res.setZipcode(userDB.getZipcode());
+			res.setRefercode(userDB.getRefercode());
+			res.setClassify(userDB.getClassify());
+			res.setSalary(userDB.getSalary());
+			res.setPhoneno(userDB.getPhoneno());
+			
 		}
 		return  res;
 	}

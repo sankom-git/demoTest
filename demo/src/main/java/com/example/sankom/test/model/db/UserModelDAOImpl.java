@@ -2,9 +2,11 @@ package com.example.sankom.test.model.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.Properties;
 
 public class UserModelDAOImpl implements UserModelDAO {
@@ -16,30 +18,33 @@ public class UserModelDAOImpl implements UserModelDAO {
 		Connection conn=this.getConnection();
 		System.out.println("conn"+conn);
 		 Statement stmt = null;
+		 UserModelDB result=null;
 		   try{
-			   String sql = "SELECT  'TEST ' ";
-			   stmt = conn.createStatement();
-			   stmt.executeQuery(sql);
-			   
-			   ResultSet rs = stmt.executeQuery(sql);
-			      //STEP 5: Extract data from result set
-			      while(rs.next()){
-			         //Retrieve by column name
-//			         int id  = rs.getInt("id");
-//			         int age = rs.getInt("age");
-//			         String first = rs.getString("first");
-//			         String last = rs.getString("last");
-			    	  String data=rs.getString(1);
-			    	  System.out.println("Data "+data);
-
-			         //Display values
-//			         System.out.print("ID: " + id);
-//			         System.out.print(", Age: " + age);
-//			         System.out.print(", First: " + first);
-//			         System.out.println(", Last: " + last);
+			   String sql = "SELECT username, address, province, zipcode, \"password\", create_date, update_date, refercode, classify, phoneno, salary"
+			   		+ " FROM public.register_users "
+			   		+ " where username=? ";
+			   PreparedStatement pstmt  = conn.prepareStatement(sql);
+			   pstmt.setString(1,userId);
+			   pstmt.executeQuery();
+			   ResultSet rs = pstmt.executeQuery();
+			      
+			      if(rs.next()){
+			    	  result=new UserModelDB();
+			    	  result.setUserName(rs.getString(1));
+			    	  result.setAddress(rs.getString(2));
+			    	  result.setProvince(rs.getString(3));
+			    	  result.setZipcode(rs.getString(4));
+			    	  
+			    	  result.setPassword(rs.getString(5));
+			    	  result.setCreateDate(rs.getDate(6));
+			    	  result.setUpdateDate(rs.getDate(7));
+			    	  result.setRefercode(rs.getString(8));
+			    	  result.setClassify(rs.getString(9));
+			    	  result.setPhoneno(rs.getString(10));
+			    	  result.setSalary(rs.getBigDecimal(11));
 			      }
 			      rs.close();
-			   
+			        
 		   }catch(SQLException se){
 			      //Handle errors for JDBC
 			      se.printStackTrace();
@@ -63,7 +68,7 @@ public class UserModelDAOImpl implements UserModelDAO {
 			   System.out.println("Goodbye!");
 		
 		//System.out.println("Create User"+user);
-		return new UserModelDB();
+		return result;
 	}
 
 	@Override
@@ -73,29 +78,22 @@ public class UserModelDAOImpl implements UserModelDAO {
 		System.out.println("conn"+conn);
 		 Statement stmt = null;
 		   try{
-			   String sql = "SELECT  'TEST ' ";
-			   stmt = conn.createStatement();
-			   stmt.executeQuery(sql);
-			   
-			   ResultSet rs = stmt.executeQuery(sql);
-			      //STEP 5: Extract data from result set
-			      while(rs.next()){
-			         //Retrieve by column name
-//			         int id  = rs.getInt("id");
-//			         int age = rs.getInt("age");
-//			         String first = rs.getString("first");
-//			         String last = rs.getString("last");
-			    	  String data=rs.getString(1);
-			    	  System.out.println("Data "+data);
-
-			         //Display values
-//			         System.out.print("ID: " + id);
-//			         System.out.print(", Age: " + age);
-//			         System.out.print(", First: " + first);
-//			         System.out.println(", Last: " + last);
-			      }
-			      rs.close();
-			   
+			   String sql = "INSERT INTO public.register_users (username,address,province,zipcode,password   ,create_date,update_date,refercode,classify,phoneno,salary) "+
+			   " VALUES(?,?,?,?,?  ,?,?,?,?,?   ,?) ";
+			   PreparedStatement pstmt = conn.prepareStatement(sql);
+			   pstmt.setString(1, user.getUserName());
+			   pstmt.setString(2, user.getAddress());
+			   pstmt.setString(3, user.getProvince());
+			   pstmt.setString(4, user.getZipcode());
+			   pstmt.setString(5, user.getPassword());
+			   Timestamp time=new Timestamp(new java.util.Date().getTime());
+			   pstmt.setTimestamp(6,time);
+			   pstmt.setTimestamp(7, time);
+			   pstmt.setString(8, user.getRefercode());
+			   pstmt.setString(9, user.getClassify());
+			   pstmt.setString(10, user.getPhoneno());
+			   pstmt.setBigDecimal(11, user.getSalary());
+			   pstmt.executeUpdate();
 		   }catch(SQLException se){
 			      //Handle errors for JDBC
 			      se.printStackTrace();

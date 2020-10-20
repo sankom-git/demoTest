@@ -5,7 +5,7 @@ CREATE TABLE public.register_users (
 	zipcode varchar(10) NULL,
 	"password" varchar(50) NULL,
 	create_date timestamp(0) NULL,
-	upddate_date timestamp(0) NULL,
+	update_date timestamp(0) NULL,
 	refercode varchar(50) NULL,
 	classify varchar(50) NULL,
 	phoneno varchar(30) NULL,

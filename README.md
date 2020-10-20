@@ -13,3 +13,10 @@ REST test path on localhost
       get token   POST http://localhost:8080/gettokens/:userName
       create user POST http://localhost:8080/user/:userName
       Get User    GET  http://localhost:8080/user/:userName/:userRequest
+
+
+ Post Man Script Fortest
+      install  Postman form www.postman.com
+       file int  ./
+      
+
